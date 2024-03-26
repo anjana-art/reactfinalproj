@@ -1,7 +1,9 @@
 import React from 'react';
 import Product from './componentsforLanding/Product';
-import Appbar from "./componentsforLanding/Appbar"
-import Drawerfilter from './componentsforLanding/Drawerfilter';
+import Appbar from "./componentsforLanding/Appbar";
+import Filter from './componentsforLanding/Filter';
+import Productwithid from './componentsforLanding/Productwithid'
+import Card from './componentsforLanding/Card';
 
 
 
@@ -11,11 +13,7 @@ function LandingPage() {
 
     return (
         <div>
-            <Appbar />
-            <Product />
-          
-
-
+            <Productwithid />
         </div>
     )
 }
