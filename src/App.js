@@ -1,31 +1,37 @@
-import LandingPage from "./components/LandingPage";
-import React, {useState} from 'react';
+import LandingPage from './components/componentsforLanding/LandingPage';
+import React, { useState } from 'react';
 import "./App.css";
 import ProductView from "./components/ProductView";
 import CartPage from "./components/CartPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Appbar from "./components/componentsforLanding/Appbar";
-import Rout from "./Rout";
+import RagisterPage from "./components/RagisterPage";
+import LoginPage from "./components/LoginPage"
 
 function App() {
-   const[cartItem , setCartItem] = useState([]);
+  const [cartItem, setCartItem] = useState([]);
   const addtocart = (product) => {
-    const exsit = cartItem.find((x) =>{
+    const exsit = cartItem.find((x) => {
       return x.id === product.id;
     })
-    if(exsit){
+    if (exsit) {
       alert("This product is already in the Cart.")
     }
-    else{
-      setCartItem([...cartItem, {...product, quantity: 1}])
+    else {
+      setCartItem([...cartItem, { ...product, quantity: 1 }])
     }
     console.log(setCartItem)
   };
+  
   return (
     <div className="App">
       <Router>
-        <Appbar />
-        <Rout addtocart={addtocart} cartItem = {cartItem} setCartItem = {setCartItem} />
+        <Routes>
+        <Route path="/" element={<LandingPage addtocart={addtocart} />} />
+        <Route path="/cartpage" element={<CartPage addtocart={addtocart} cartItem={cartItem} setCartItem={setCartItem} />} />
+        <Route path="/ragisterpage" element={<RagisterPage />} />
+        <Route path='/loginpage' element={<LoginPage />} />
+      </Routes>
       </Router>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import firebase from "../firebaseConfig";
+//import firebase from "../firebaseConfig";
 
 function RagisterPage() {
   const [details, setDetails] = useState({

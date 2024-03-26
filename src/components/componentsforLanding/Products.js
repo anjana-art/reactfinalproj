@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { BmrowserRouter } from "react-router-dom";
 import { IoIosCloseCircle } from "react-icons/io";
+import { Navigate } from "react-router-dom";
 
 const Visual = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -16,11 +17,17 @@ const Visual = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function Card({item}, addtocart) {
+export default function Product({ item, addtocart }) {
+  console.log('Card addtocart', addtocart, typeof addtocart);
+
+  const addToCart = () => {
+    Navigate('/cart-page', {state: {}})
+  }
+
   const [detail, setDetail] = useState([]);
   const [close, setClose] = useState(false);
-  const detailPage = (Card) => {
-    setDetail([{ ...Card }]);
+  const detailPage = (Products) => {
+    setDetail([{ ...Products }]);
     setClose(true);
   };
 
@@ -31,27 +38,27 @@ export default function Card({item}, addtocart) {
           {detail.map((x) => {
             return (
               <>
-              <div key={x.id}>
-                <button onClick={() => setClose(false)}>
-                  <IoIosCloseCircle />
-                </button>
+                <div key={x.id}>
+                  <button onClick={() => setClose(false)}>
+                    <IoIosCloseCircle />
+                  </button>
 
-                <div>
-                  <img src={x.logo} alt={x.name}></img>
-                </div>
-                <div>
-                  <h2>{x.name}</h2>
-                  <h3>Price: {x.price}</h3>
-                </div>
-                <p>Discriptions: {x.description}</p>
-                <button onClick={()=> addtocart(x)}>Add to Cart</button>
-                <div>
-                  <h3>Features</h3>
-                  <li>{x.featureone}</li>
-                  <li>{x.featuretwo}</li>
-                  <li>{x.featurethree}</li>
-                  <li>{x.featurefour}</li>
-                </div>
+                  <div>
+                    <img src={x.logo} alt={x.name}></img>
+                  </div>
+                  <div>
+                    <h2>{x.name}</h2>
+                    <h3>Price: {x.price}</h3>
+                  </div>
+                  <p>Discriptions: {x.description}</p>
+                  <button onClick={addtocart}>Add to Cart</button>
+                  <div>
+                    <h3>Features</h3>
+                    <li>{x.featureone}</li>
+                    <li>{x.featuretwo}</li>
+                    <li>{x.featurethree}</li>
+                    <li>{x.featurefour}</li>
+                  </div>
                 </div>
               </>
             );
